@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import initialState from './initialState/initialState';
+
+import Board from './Board';
 
 class App extends Component {
+  state = {
+    symbols: initialState
+  }
+
+  handleClick = (id) => {
+    let symbols = [...this.state.symbols.map(symbol => {
+      if (symbol.id === id) {
+        symbol.faceup = !symbol.faceup;
+      }
+      return symbol;
+    })];
+    this.setState({ symbols });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Board symbols={this.state.symbols} handleClick={this.handleClick}/>
       </div>
     );
   }
