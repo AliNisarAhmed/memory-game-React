@@ -3,9 +3,25 @@ import classNames from 'classnames';
 
 export default class Square extends React.Component {
   
+  state = {
+    frozen: false
+  }
+
   clickHandler = () => {
-    if (!this.props.guessed || !this.props.faceup) {
+    if (!this.state.frozen && (!this.props.guessed || !this.props.faceup)) {
       this.props.handleClick(this.props.id);
+    }
+  }
+
+  static getDerivedStateFromProps(props) {
+    if (props.faceup) {
+      return {
+        frozen: true
+      };
+    } else {
+      return {
+        frozen: false
+      }
     }
   }
   
