@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background: linear-gradient(to left, #50c9c3, #96deda);
 }
 
 code {
@@ -18,10 +20,17 @@ code {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  margin: 50px auto;
+  margin: 0 auto;
   text-align: center;
   width: 40%;
+}
+
+.title {
+  font-family: 'Bitter', serif;
+  font-size: 70px;
+  margin: 0 10px 10px 10px;
+  text-align: center;
+  color: tomato;
 }
 
 .stats {
@@ -29,4 +38,51 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
+  font-size: 20px;
+}
+
+.timer, .moves {
+
+  span {
+    font-size: 130%;
+  }
+}
+
+.timerWin {
+  color: tomato;
+  font-size: 140%;
+}
+
+.restart {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #e0fcf8;
+  color: tomato;
+  font-size: 15px;
+  border: 1px solid tomato;
+  transition: all 0.1s;
+
+  &:hover {
+    color: white;
+    background-color: tomato;
+  }
+}
+
+.restartAnimation {
+  animation: animateCTA ease-in 1s infinite both;
+}
+
+@keyframes animateCTA {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

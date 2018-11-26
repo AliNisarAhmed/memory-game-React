@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import initialState from '../initialState/initialState';
+import classNames from 'classnames';
+import initialState, { generateFreshSymbols } from '../initialState/initialState';
 
 import shuffle from '../helperFunctions/shuffle';
 import formatTime from '../helperFunctions/formatTime'
@@ -20,8 +21,19 @@ class App extends Component {
   componentDidUpdate() {
     if (this.state.faceupCards >= 2) {
       this.checkForGuess();
-      this.checkForWin();
     }
+  }
+
+  restartGame = () => {
+    clearInterval(this.state.timerId);
+    this.setState({
+      symbols: shuffle(generateFreshSymbols()),
+      faceupCards: 0,
+      guessedCards: 0,
+      moves: 0,
+      timerId: null,
+      timer: [0, 0]
+    })
   }
 
   checkForWin = () => {
@@ -70,7 +82,7 @@ class App extends Component {
         }
         return symbol;
       });
-      this.setState({ symbols: temp });
+      this.setState({ symbols: temp }, this.checkForWin);
     } else {
       setTimeout(() => {
         let temp = this.state.symbols.map(symbol => {
@@ -86,14 +98,28 @@ class App extends Component {
   }
 
   render() {
+    let restartClass = classNames({
+      restart: true,
+      restartAnimation: this.state.guessedCards === 16
+    });
+
+    let timerClass = classNames({
+      timer: true,
+      timerWin: this.state.guessedCards === 16
+    });
+
     return (
-      <div className="App">
-        <div className="stats">
-          <span className="timer">Time: {formatTime(this.state.timer)}</span>
-          <span className="moves">Moves: {this.state.moves}</span>
+      <React.Fragment>
+        <h1 className="title">Memory Game</h1>
+        <div className="App">
+          <div className="stats">
+            <span className={timerClass}>Time: <span>{formatTime(this.state.timer)}</span></span>
+            <button className={restartClass} onClick={this.restartGame}>Restart Game</button>
+            <span className={timerClass}>Moves: <span>{this.state.moves}</span></span>
+          </div>
+          <Board symbols={this.state.symbols} handleClick={this.handleClick}/>
         </div>
-        <Board symbols={this.state.symbols} handleClick={this.handleClick}/>
-      </div>
+      </React.Fragment>
     );
   }
 }

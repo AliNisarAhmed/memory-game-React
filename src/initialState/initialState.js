@@ -16,3 +16,7 @@ export default [
   { id: 14, value: 7, faceup: false, guessed: false,}, 
   { id: 15, value: 8, faceup: false, guessed: false,}, 
 ]
+
+export function generateFreshSymbols () {
+  return new Array(16).fill(0).map((x, i) => ({id: i, value: ((i + 1) % 8) + 1 , faceup: false, guessed: false}));
+}

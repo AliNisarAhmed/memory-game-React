@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(auto, 1fr));
   grid-template-rows: repeat(4, minmax(auto, 1fr));
-  grid-gap: 8px;
+  grid-gap: 10px;
 
   margin: 20px auto;
-  border: 1px solid red;
-  padding: 5px;
+  border: 1px solid black;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.7), -5px -5px 10px 0 rgba(0, 0, 0, 0.7);
 }
 
 .square {
@@ -16,12 +18,27 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  transition: all .2s;
-
+  transition: all 0.2s, transform .1s;
+  border-radius: 5px;
+  background-color: #e0fcf8;
+  color: rgb(24, 40, 95);
   span {
     height: 20px;
     width: 20px;
   }
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.7), -2px -2px 1px 0 rgba(0, 0, 0, 0.7);
+  }
+}
+
+.clicked {
+  animation: flipped .2s 1;
+}
+
+.spanClicked {
+  animation: reverseFlip .1s 1;
 }
 
 .hidden {
@@ -31,6 +48,27 @@
 }
 
 .guessed {
-  background-color: rgba(0, 128, 0, 0.1);
-  color: black;
+  background-color: rgba(106, 173, 106, 0.945);
+  transform: scale(1.07);
+  box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.7), -2px -2px 1px 0 rgba(0, 0, 0, 0.7);
+}
+
+@keyframes flipped {
+  0% {
+    
+  }
+  
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+@keyframes reverseFlip {
+  from {
+
+  }
+
+  to {
+    transform: rotate3d(0, 1, 0, -180deg);  
+  }
 }
