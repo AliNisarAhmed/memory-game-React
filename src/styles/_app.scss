@@ -22,7 +22,6 @@ code {
   flex-direction: column;
   margin: 0 auto;
   text-align: center;
-  width: 40%;
 }
 
 .title {
@@ -34,7 +33,6 @@ code {
 }
 
 .stats {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,6 +43,7 @@ code {
 .timer, .moves {
 
   span {
+    margin-left: 10px;
     font-size: 130%;
   }
 }
@@ -55,6 +54,7 @@ code {
 }
 
 .restart {
+  margin: 0 20px;
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #e0fcf8;

@@ -27,21 +27,36 @@ export default class Square extends React.Component {
   
   render () {
 
+    const { value, id, faceup, guessed, handleClick } = this.props;
+
     let squareClass = classNames({
       square: true,
-      hidden: !this.props.faceup,
-      guessed: this.props.guessed,
-      clicked: this.props.faceup
+      // hidden: !this.props.faceup,
+      // clicked: this.props.faceup
     });
 
-    let spanClass = classNames({
-      clicked: this.props.faceup
+    let frontClass = classNames({
+      front:  true,
+      frontClicked: !faceup,
+      side: true,
+    })
+
+    let backClass = classNames({
+      side: true,
+      backClicked: faceup,
+      back: true,
+      guessed: guessed,
+      // clicked: this.props.faceup
     })
 
     return (
       <div className={squareClass} onClick={this.clickHandler}>
-        <span className={spanClass}>{this.props.faceup && this.props.value}</span>
+        <div className={frontClass}></div>
+        <div className={backClass}>{this.props.value}</div>
       </div>
     );
   }
 }
+
+
+//this.props.faceup && 

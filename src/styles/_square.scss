@@ -1,0 +1,59 @@
+
+.square {
+  width: 80px;
+  height: 80px;
+  
+  
+  font-size: 20px;
+  
+  border-radius: 5px;
+  color: rgb(24, 40, 95);
+  
+  position: relative;
+  perspective: 1500px;
+
+  &:hover {
+    transform: scale(1.04);
+  }
+  
+  .side {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: tomato;
+  }
+  
+  .front {
+  }
+  
+  .back {
+    background-color: #e0fcf8;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+
+  .frontClicked {
+    // background-color: tomato;
+    transform: rotateY(180deg);
+  }
+
+  .backClicked {
+    // background-color: #e0fcf8;
+    transform: rotateY(0);
+    backface-visibility: hidden;
+  }
+}
+
+.guessed {
+  transform: scale(1.07);
+  box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.7), -2px -2px 1px 0 rgba(0, 0, 0, 0.7);
+  background-color: rgba(106, 173, 106, 0.945);
+}
